@@ -16,7 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->admin)
+        if (!auth()->user() && !auth()->user()->admin)
         {
             return abort(403);
         }
