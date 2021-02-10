@@ -8,9 +8,8 @@
                 Create
             </a>
         </div>
+        
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
-
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table-fixed border-collapse w-full">
@@ -27,7 +26,7 @@
                                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Genre</span>
                                         {{ $genre->name }}
                                     </td>
-                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
                                         <div class="flex justify-center">
                                         <a href="{{ route('admin.genres.edit', $genre->id) }}" class="text-blue-400 hover:text-blue-600 underline">Edit</a>

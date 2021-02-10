@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminAuthorController;
 
@@ -23,6 +24,7 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {
         Route::view('/', 'admin.index')->name('index');
         
+        Route::resource('books', AdminBooksController::class);
         Route::resource('genres', AdminGenreController::class);
         Route::resource('authors', AdminAuthorController::class);
     });
