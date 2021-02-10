@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AuthorBook extends Migration
+class BookGenre extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AuthorBook extends Migration
      */
     public function up()
     {
-        Schema::create('author_book', function (Blueprint $table) {
-            $table->foreignId('author_id')->constrained('authors');
-            $table->foreignId('book_id')->constrained('books');
+        Schema::create('book_genre', function (Blueprint $table) {
+            $table->foreignId('book_id')->constrained();
+            $table->foreignId('genre_id')->constrained();
         });
     }
 

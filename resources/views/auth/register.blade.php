@@ -47,11 +47,11 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="birthday" :value="__('auth.birthday')" />
+                <x-label for="date_of_birth" :value="__('auth.birthday')" />
 
-            <x-input id="birthday" class="block mt-1 w-full"
+            <x-input id="date_of_birth" class="block mt-1 w-full"
                                 type="date"
-                                name="birthday" required />
+                                name="date_of_birth" required />
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

@@ -18,9 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('author_id')->constrained('authors');
-            $table->foreignId('genre_id')->constrained('genres');
-            $table->enum('approved', [0, 1]);
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }

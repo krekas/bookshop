@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function __invoke() {
         return view('front.home', [
-            'books' => Book::approved()->simplePaginate(25)
+            'books' => Book::with('authors')->approved()->simplePaginate(25)
         ]);
     }
 }
