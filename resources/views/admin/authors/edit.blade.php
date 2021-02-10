@@ -4,13 +4,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <form method="POST" action="{{ route('admin.genres.store') }}" class="w-2/6">
+                    <form method="POST" action="{{ route('admin.authors.update', $author->id) }}" class="w-2/6">
                         @csrf
+                        @method('PUT')
 
                         <div class="mb-2">
                             <x-label for="name" :value="__('Name')" />
             
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $author->name }}" required autofocus />
                         </div>
 
                         <x-button class="ml-3">

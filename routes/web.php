@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminGenreController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\Admin\AdminGenreController;
+use App\Http\Controllers\Admin\AdminAuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +23,8 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {
         Route::view('/', 'admin.index')->name('index');
         
-        Route::resource('genres', GenreController::class);
-        Route::resource('authors', AuthorController::class);
+        Route::resource('genres', AdminGenreController::class);
+        Route::resource('authors', AdminAuthorController::class);
     });
 });
 

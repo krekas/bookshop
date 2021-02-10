@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 
-class GenreController extends Controller
+class AdminGenreController extends Controller
 {
     public function index()
     {
