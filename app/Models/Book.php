@@ -32,4 +32,9 @@ class Book extends Model
     {
         return $query->where('approved', 0);
     }
+
+    public function scopeNewest($query)
+    {
+        return $query->orderBy('created_at', 'ASC');
+    }
 }
