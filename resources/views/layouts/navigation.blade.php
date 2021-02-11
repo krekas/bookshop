@@ -11,9 +11,11 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="space-x-8 -my-px ml-10 flex items-center">
-                    <input type="text" id="search" name="search" placeholder="Search"
-                            class="mt-auto w-full px-4 py-2 mb-4 mr-4 text-base text-blue-700 bg-gray-100 border-transparent rounded-lg focus:border-gray-500 focus:bg-white focus:ring-0">
+                <div> 
+                    <div class="flex items-center mt-2 mb-6 ml-10">
+                        <input type='text' placeholder="Search" class="w-full pr-10 pl-4 py-2 text-md border rounded-lg text-blue-700 focus:outline-none focus:border-blue-500"/>
+                        <svg class="w-4 h-4 fill-current text-gray-500 -ml-8 z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    </div>
                 </div>
             </div>
 
