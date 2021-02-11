@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminAuthorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserChangePassword;
+use App\Http\Controllers\UserSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,14 @@ use App\Http\Controllers\BookController;
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/book/{book}', BookController::class)->name('book.show');
+
+Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {
+    Route::name('user.')->group(function () {
+        Route::view('settings', 'front.user.settings')->name('settings');
+        Route::post('settings/{user}', [UserSettingsController::class, 'update'])->name('settings.update');
+        Route::post('settings/password/change/{user}', [UserChangePassword::class, 'update'])->name('password.update');
+    });
+});
 
 Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {

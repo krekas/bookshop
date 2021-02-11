@@ -3,7 +3,7 @@
         <div class="container max-w-7xl px-5 mx-auto mt-6">
 
               <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                <img alt="ecommerce" class="lg:w-1/3 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/330x330">
+                <img alt="ecommerce" class="lg:w-1/3 w-full h-64 object-cover object-center rounded" src="https://dummyimage.com/330x400">
                 <div class="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h1 class="text-gray-900 text-3xl title-font font-medium tracking-widest mb-1 border-solid border-b-2 border-light-blue-500">{{ $book->name }}</h1>
 
