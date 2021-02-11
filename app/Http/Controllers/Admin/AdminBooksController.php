@@ -29,12 +29,14 @@ class AdminBooksController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'required',
             'genre' => 'required',
             'author' => 'required'
         ]);
 
         $book = Book::create([
             'name' => $request->name,
+            'description' => $request->description,
             'user_id' => auth()->id(),
             'slug' => 'test'
         ]);

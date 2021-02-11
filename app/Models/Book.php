@@ -11,7 +11,7 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'user_id', 'approved'];
+    protected $fillable = ['name', 'slug', 'description', 'user_id', 'approved'];
 
     public function authors()
     {
