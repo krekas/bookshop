@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminAuthorController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {
-        Route::view('/', 'admin.index')->name('index');
+        Route::get('/', AdminDashboardController::class)->name('index');
         
         Route::resource('books', AdminBooksController::class);
         Route::resource('genres', AdminGenreController::class);

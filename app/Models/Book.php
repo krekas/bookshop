@@ -27,4 +27,9 @@ class Book extends Model
     {
         return $query->where('approved', '1');
     }
+
+    public function scopeUnapproved($query)
+    {
+        return $query->where('approved', 0);
+    }
 }
