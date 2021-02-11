@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminAuthorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 */
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/book/{book}', BookController::class)->name('book.show');
 
 Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {

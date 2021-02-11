@@ -13,7 +13,7 @@ class AdminBooksController extends Controller
     public function index()
     {
         return view('admin.books.index', [
-            'books' => Book::with('authors', 'genres')->paginate(20)
+            'books' => Book::latest()->with('authors', 'genres')->paginate(20)
         ]);
     }
 
