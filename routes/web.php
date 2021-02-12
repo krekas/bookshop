@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminAuthorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserChangePassword;
 use App\Http\Controllers\UserSettingsController;
@@ -40,6 +41,7 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
         Route::resource('books', AdminBooksController::class);
         Route::resource('genres', AdminGenreController::class);
         Route::resource('authors', AdminAuthorController::class);
+        Route::resource('users', AdminUsersController::class);
     });
 });
 

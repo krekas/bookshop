@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Rules\NotSameAsOldPassword;
 use App\Rules\OldPasswordCheck;
-use Illuminate\Support\Facades\Hash;
 
 class UserChangePassword extends Controller
 {
