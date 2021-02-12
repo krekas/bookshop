@@ -5,7 +5,7 @@ namespace App\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Validation\Rule;
 
-class NotSameAsOldPassword implements Rule
+class OldPasswordCheck implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,7 +26,7 @@ class NotSameAsOldPassword implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Hash::check(auth()->user()->password, $value);
+        return Hash::check($value, auth()->user()->password);
     }
 
     /**
@@ -36,6 +36,6 @@ class NotSameAsOldPassword implements Rule
      */
     public function message()
     {
-        return 'New password cannot be the same as old password.';
+        return 'Wrong old password..';
     }
 }
