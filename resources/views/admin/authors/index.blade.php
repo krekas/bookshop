@@ -29,8 +29,8 @@
                                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
                                         <div class="flex justify-center">
-                                        <a href="{{ route('admin.authors.edit', $author->id) }}" class="text-blue-400 hover:text-blue-600 underline">Edit</a>
-                                        <form method="POST" action="{{ route('admin.authors.destroy', $author->id) }}">
+                                        <a href="{{ route('admin.authors.edit', $author) }}" class="text-blue-400 hover:text-blue-600 underline">Edit</a>
+                                        <form method="POST" action="{{ route('admin.authors.destroy', $author) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button class="flex-inline bg-transparent text-blue-400 hover:text-blue-600 underline p-0 ml-2 border-none">

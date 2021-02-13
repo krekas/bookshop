@@ -4,7 +4,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <form method="POST" action="{{ route('admin.genres.update', $genre->id) }}" class="w-2/6">
+                    <form method="POST" action="{{ route('admin.genres.update', $genre) }}" class="w-2/6">
                         @csrf
                         @method('PUT')
 

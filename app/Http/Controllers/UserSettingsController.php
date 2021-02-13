@@ -10,7 +10,7 @@ class UserSettingsController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'email' => 'required|email|string|max:255',
+            'email' => 'required|email|string|max:255|unique:users',
         ]);
 
         $user->update(['email' => $request->email]);
