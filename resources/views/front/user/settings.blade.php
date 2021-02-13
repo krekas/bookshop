@@ -51,7 +51,7 @@
                     </div>
                   </div>
                   <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="{{ route('user.password.update', auth()->user()->id) }}" method="POST">
+                    <form action="{{ route('user.password.update', auth()->user()) }}" method="POST">
                         @csrf
                       <div class="shadow sm:rounded-md sm:overflow-hidden">
                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
