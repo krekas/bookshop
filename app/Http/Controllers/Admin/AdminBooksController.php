@@ -38,7 +38,7 @@ class AdminBooksController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'user_id' => auth()->id(),
-            'slug' => 'test'
+            'approved' => 1
         ]);
 
         $book->genres()->sync($request->genre);

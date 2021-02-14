@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Models\Genre;
 use App\Models\Author;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $fillable = ['name', 'slug', 'description', 'user_id', 'approved'];
 
@@ -21,6 +23,13 @@ class Book extends Model
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 
     public function scopeApproved($query)
