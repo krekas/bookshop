@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -21,22 +21,11 @@ class BookController extends Controller
         return view('front.book.create', compact('genres'));
     }
 
-    public function store(Request $request)
+    public function store(CreateBookRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required',
-            'genre' => 'required|array',
-            'authors' => 'required'
-        ]);
-
         $authors = explode(',', $request->authors);
 
-        $book = Book::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'user_id' => auth()->id()
-        ]);
+        $book = auth()->user()->books()->create($request->validated());
 
         $book->genres()->attach($request->genre);
         

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
@@ -25,24 +26,15 @@ class AdminBooksController extends Controller
         return view('admin.books.create', compact('genres', 'authors'));
     }
 
-    public function store(Request $request)
+    public function store(CreateBookRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required',
-            'genre' => 'required',
-            'author' => 'required'
-        ]);
-
-        $book = Book::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'user_id' => auth()->id(),
-            'approved' => 1
-        ]);
+        $book = auth()->user()->books()->create(
+            $request->validated(),
+            //'approved' => true
+        );
 
         $book->genres()->attach($request->genre);
-        $book->authors()->attach($request->author);
+        $book->authors()->attach($request->authors);
 
         return redirect()->route('admin.books.index')->with('success', 'Book created.');
     }

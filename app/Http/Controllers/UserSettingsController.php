@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserSettingsRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserSettingsController extends Controller
 {    
-    public function update(Request $request, User $user)
+    public function update(UpdateUserSettingsRequest $request, User $user)
     {
-        $request->validate([
-            'email' => 'required|email|string|max:255|unique:users',
-        ]);
-
-        $user->update(['email' => $request->email]);
+        $user->update($request->validated());
 
         return redirect()->route('user.settings')->with('success', 'Settings updated.');
     }

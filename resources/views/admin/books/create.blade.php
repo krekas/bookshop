@@ -14,9 +14,9 @@
                         </div>
 
                         <div class="mb-2">
-                            <x-label for="author[]" value="Author" />
+                            <x-label for="authors[]" value="Authors" />
 
-                            <select name="author[]" id="author" multiple data-live-search="true" class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <select name="authors[]" id="authors" multiple data-live-search="true" class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @foreach ($authors as $author)
                                     <option class="py-1" value="{{ $author->id }}">{{ $author->name }}</option>
                                 @endforeach

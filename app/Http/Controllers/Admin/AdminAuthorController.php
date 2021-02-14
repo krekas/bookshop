@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateEditAuthorRequest;
 use App\Models\Author;
-use Illuminate\Http\Request;
 
 class AdminAuthorController extends Controller
 {
@@ -20,15 +20,9 @@ class AdminAuthorController extends Controller
         return view('admin.authors.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateEditAuthorRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        Author::create([
-            'name' => $request->name
-        ]);
+        Author::create($request->validated());
 
         return redirect()->route('admin.authors.index')->with('success', 'Author created.');
     }
@@ -38,13 +32,9 @@ class AdminAuthorController extends Controller
         return view('admin.authors.edit', compact('author'));
     }
 
-    public function update(Request $request, Author $author)
+    public function update(CreateEditAuthorRequest $request, Author $author)
     {
-        $validate = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $author->update($validate);
+        $author->update($request->validated());
 
         return redirect()->route('admin.authors.index')->with('success', 'Author updated.');
     }

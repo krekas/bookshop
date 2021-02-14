@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminUpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class AdminUsersController extends Controller
 {
@@ -20,15 +20,9 @@ class AdminUsersController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(AdminUpdateUserRequest $request, User $user)
     {
-        $validate = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'admin' => 'digits_between:0,1'
-        ]);
-
-        $user->update($validate);
+        $user->update($request->validated());
 
         return redirect()->route('admin.users.index')->with('success', 'User updated.');
     }

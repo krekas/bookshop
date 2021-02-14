@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateEditGenreRequest;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 
 class AdminGenreController extends Controller
 {
@@ -20,15 +20,9 @@ class AdminGenreController extends Controller
         return view('admin.genres.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateEditGenreRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        Genre::create([
-            'name' => $request->name
-        ]);
+        Genre::create($request->validated());
 
         return redirect()->route('admin.genres.index')->with('success', 'Genre created.');
     }
@@ -38,13 +32,9 @@ class AdminGenreController extends Controller
         return view('admin.genres.edit', compact('genre'));
     }
 
-    public function update(Request $request, Genre $genre)
+    public function update(CreateEditGenreRequest $request, Genre $genre)
     {
-        $validate = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $genre->update($validate);
+        $genre->update($request->validated());
 
         return redirect()->route('admin.genres.index')->with('success', 'Genre updated.');
     }
