@@ -41,8 +41,8 @@ class AdminBooksController extends Controller
             'approved' => 1
         ]);
 
-        $book->genres()->sync($request->genre);
-        $book->authors()->sync($request->author);
+        $book->genres()->attach($request->genre);
+        $book->authors()->attach($request->author);
 
         return redirect()->route('admin.books.index')->with('success', 'Book created.');
     }

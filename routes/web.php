@@ -24,7 +24,9 @@ use App\Http\Controllers\UserSettingsController;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/book/{book:slug}', BookController::class)->name('book.show');
+Route::get('/book/create', [BookController::class, 'create'])->name('books.create')->middleware('auth');
+Route::post('/book/store', [BookController::class, 'store'])->name('books.store')->middleware('auth');
+Route::get('/book/{book:slug}', [BookController::class, 'show'])->name('books.show');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {
     Route::name('user.')->group(function () {

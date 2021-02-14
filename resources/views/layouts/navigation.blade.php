@@ -22,6 +22,9 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                     @auth
+                        <a href="{{  route('books.create') }}" class="bg-transparent hover:bg-blue-400 text-blue-400 font-semibold hover:text-white py-1 px-4 border border-blue-400 hover:border-transparent rounded mr-5">
+                            Add book to listing
+                        </a>
                         @if (Auth::user()->admin)
                             <a href="{{ route('admin.index') }}" class="mr-5 text-sm font-semibold text-blue-400 hover:text-blue-700">Admin</a>
                         @endif
@@ -79,8 +82,12 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('admin.index')" :active="request()->is('admin') || request()->is('admin/*')">
+                {{ __('Admin') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('books.create')" :active="request()->routeIs('books.create')">
+                {{ __('Add book to listing') }}
             </x-responsive-nav-link>
         </div>
 
