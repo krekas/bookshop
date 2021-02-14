@@ -35,8 +35,7 @@ class BookController extends Controller
         $book = Book::create([
             'name' => $request->name,
             'description' => $request->description,
-            'user_id' => auth()->id(),
-            'approved' => 1
+            'user_id' => auth()->id()
         ]);
 
         $book->genres()->attach($request->genre);
