@@ -15,6 +15,8 @@ class Book extends Model
 
     protected $fillable = ['name', 'slug', 'description', 'user_id', 'approved'];
 
+    protected $perPage = 10;
+
     public function authors()
     {
         return $this->belongsToMany(Author::class);

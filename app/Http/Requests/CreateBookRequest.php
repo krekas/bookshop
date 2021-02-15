@@ -30,4 +30,14 @@ class CreateBookRequest extends FormRequest
             'authors' => 'required'
         ];
     }
+
+    public function validated()
+    {
+        if (auth()->user()->admin)
+        {
+            return array_merge(parent::validated(), [
+                'approved' => true
+            ]);
+        }
+    }
 }

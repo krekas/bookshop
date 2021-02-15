@@ -7,14 +7,13 @@ use App\Http\Requests\CreateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 
 class AdminBooksController extends Controller
 {
     public function index()
     {
         return view('admin.books.index', [
-            'books' => Book::latest()->with('authors', 'genres')->paginate(20)
+            'books' => Book::latest()->with('authors', 'genres')->paginate()
         ]);
     }
 
@@ -28,10 +27,7 @@ class AdminBooksController extends Controller
 
     public function store(CreateBookRequest $request)
     {
-        $book = auth()->user()->books()->create(
-            $request->validated(),
-            //'approved' => true
-        );
+        $book = auth()->user()->books()->create($request->validated());
 
         $book->genres()->attach($request->genre);
         $book->authors()->attach($request->authors);
@@ -44,5 +40,12 @@ class AdminBooksController extends Controller
         $book->delete();
 
         return redirect()->route('admin.books.index')->with('success', 'Book deleted.');
+    }
+
+    public function approveBook(Book $book)
+    {
+        $book->update(['approved' => 1]);
+        
+        return redirect()->route('admin.books.index')->with('success', 'Book approved.');
     }
 }
