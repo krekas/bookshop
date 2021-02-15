@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('book_id')->constrained('books');
-            $table->text('comment');
+            $table->text('review');
             $table->timestamps();
         });
     }

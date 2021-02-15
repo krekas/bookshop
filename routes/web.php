@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminAuthorController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserChangePassword;
 use App\Http\Controllers\UserSettingsController;
 
@@ -26,6 +27,7 @@ use App\Http\Controllers\UserSettingsController;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/book/create', [BookController::class, 'create'])->name('books.create')->middleware('auth');
 Route::post('/book/store', [BookController::class, 'store'])->name('books.store')->middleware('auth');
+Route::post('/book/review/{book}', [ReviewController::class, 'store'])->name('books.review.store')->middleware('auth');
 Route::get('/book/{book:slug}', [BookController::class, 'show'])->name('books.show');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {

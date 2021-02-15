@@ -25,6 +25,11 @@ class Book extends Model
         return $this->belongsToMany(Genre::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -45,5 +50,11 @@ class Book extends Model
     public function scopeNewest($query)
     {
         return $query->orderBy('created_at', 'ASC');
+    }
+
+    // Is Povilo review video
+    public function getIsNewAttribute()
+    {
+        return now()->subDays(7) <= $this->created_at;
     }
 }

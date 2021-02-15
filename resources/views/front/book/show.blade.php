@@ -77,6 +77,42 @@
                 </div>
               </div>
 
+              {{-- Reviews --}}
+
+              <div class="container md:max-w-5xl w-full mx-auto mt-6">
+                
+                <div class="flex">
+                  <div class="sm:w-1/5 sm:block hidden"></div>
+                  <div class="sm:w-4/5 w-full mb-2">
+                    <h5 class="text-gray-900 text-2xl title-font font-medium tracking-widest mb-1 border-solid border-b-2 border-light-blue-500">Reviews</h5>
+
+                    <form action="{{ route('books.review.store', $book) }}" method="POST">
+                      @csrf
+                      <textarea name="review" id="review" cols="30" rows="3" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" @guest disabled @endguest>@guest Login to leave a review @endguest</textarea>
+                      <div class="flex justify-end">
+                        @auth    
+                          <x-button>
+                            {{ __('Submit review') }}
+                          </x-button>
+                        @endauth
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+
+                @foreach ($reviews as $review)
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap p-2 mb-4">
+                  <div class="sm:w-1/5 w-full font-semibold">
+                    {{ $review->users->name }}
+                  </div>
+                  <div class="sm:w-4/5 w-full sm:border-l-2 sm:border-solid sm:border-gray-200 sm:pl-2">
+                    {{ $review->review }}
+                  </div>
+                </div>
+                @endforeach
+              </div>
+
         </div>
       </section>
 </x-app-layout>

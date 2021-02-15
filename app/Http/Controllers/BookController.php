@@ -6,12 +6,15 @@ use App\Http\Requests\CreateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
+use App\Models\Review;
 
 class BookController extends Controller
 {
     public function show(Book $book)
     {
-        return view('front.book.show', compact('book'));
+        $reviews = Review::with('users')->latest()->whereBookId($book->id)->get();
+
+        return view('front.book.show', compact('book', 'reviews'));
     }
 
     public function create()
