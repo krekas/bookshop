@@ -3,13 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    // paieska pagal Povilo video ir Deivido stream
     public function __invoke() {
-        return view('front.home', [
-            'books' => Book::latest()->with('authors')->approved()->simplePaginate()
-        ]);
+        $search = request('search');
+
+        $books = Book::with('authors')
+            ->when(request('search'), function($query) use ($search) {
+
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhereHas('authors', function($query) use ($search) {
+                        $query->where('name', 'LIKE', "%{$search}%");
+                });
+            })
+            ->latest()
+            ->approved()
+            ->simplePaginate();
+        
+        return view('front.home', compact('books'));
     }
 }
