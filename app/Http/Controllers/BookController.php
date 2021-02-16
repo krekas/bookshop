@@ -51,7 +51,9 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        $book->load('genres', 'authors');
+        abort_unless(auth()->user()->id == $book->user_id, 403);
+        
+        $book->load('genres');
         $authors = $book->authors()->pluck('name')->implode(',');
 
         $genres = Genre::all();
