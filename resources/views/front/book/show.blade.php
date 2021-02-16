@@ -16,7 +16,8 @@
           @endunless
 
               <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                <img alt="ecommerce" class="lg:w-1/3 w-full h-64 object-cover object-center rounded" src="https://dummyimage.com/330x400">
+                {{-- <img alt="ecommerce" class="lg:w-1/3 w-full h-64 object-cover object-center rounded" src="https://dummyimage.com/330x400"> --}}
+                <img alt="{{ $book->name }}" class="lg:w-1/3 w-full h-64 object-cover object-center rounded" src="{{ asset('storage/covers/'.$book->cover) }}">
                 <div class="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h1 class="text-gray-900 text-3xl title-font font-medium tracking-widest mb-1 border-solid border-b-2 border-light-blue-500">{{ $book->name }}</h1>
 
@@ -58,10 +59,9 @@
                     </div>
                 </div>
 
-                  <p class="leading-relaxed mb-4">{!! nl2br($book->description) !!}</p>
+                  <p class="leading-relaxed mb-4">{{ e($book->description) }}</p>
                   
                   <div class="flex">
-                    {{-- <span class="title-font font-medium text-2xl text-gray-900 @if ($book->discount) line-through @endif">{{ $book->price }}&euro; {{ $book->discount_price }}</span> --}}
                     <div class="flex flex-row items-center">
                       <div class="@if ($book->discount) text-md line-through @else text-2xl @endif mr-1">{{ $book->price }}&euro;</div>
                       @if ($book->discount)<div class="text-red-600 font-medium text-2xl">{{ $book->discount_price }}&euro;</div>@endif

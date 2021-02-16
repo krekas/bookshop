@@ -7,7 +7,7 @@
 
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form method="POST" action="{{ route('books.store') }}" class="sm:w-4/6 w-full">
+                    <form method="POST" action="{{ route('books.store') }}" class="sm:w-4/6 w-full" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-2">
@@ -20,6 +20,12 @@
                             <x-label for="price" :value="__('Price*')" />
             
                             <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" min="1" step="0.01" required />
+                        </div>
+
+                        <div class="mb-2">
+                            <x-label for="cover" :value="__('Cover*')" />
+            
+                            <x-input id="cover" class="block mt-1 w-full" type="file" name="cover" required />
                         </div>
 
                         <div class="mb-2">

@@ -13,7 +13,7 @@ class Book extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['name', 'slug', 'description', 'price', 'discount', 'user_id', 'approved'];
+    protected $fillable = ['name', 'slug', 'cover', 'description', 'price', 'discount', 'user_id', 'approved'];
 
     protected $casts = ['discount' => 'integer' ];
 

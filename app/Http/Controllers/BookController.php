@@ -6,7 +6,6 @@ use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
 use App\Models\Review;
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\UserUpdateBookRequest;
 
@@ -36,16 +35,23 @@ class BookController extends Controller
     public function store(CreateBookRequest $request)
     {
         $authors = explode(',', $request->authors);
-        
-        $book = auth()->user()->books()->create($request->validated());
 
+        $fileName = time().'.'.$request->file('cover')->extension();
+        
+        $book = auth()->user()->books()->create(
+            array_merge($request->validated(), [
+            'cover' => $fileName
+        ]));
+        
         $book->genres()->attach($request->genre);
         
         foreach ($authors as $authorName) {
             $author = Author::updateOrCreate(['name' => $authorName]);
             $book->authors()->attach($author);
         }
-
+        
+        $request->file('cover')->storeAs('covers', $fileName, 'public');
+        
         return redirect()->route('books.show', $book)->with('success', 'Book created.');
     }
 
