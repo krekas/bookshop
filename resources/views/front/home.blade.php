@@ -19,8 +19,10 @@
                 <h1 class="text-lg text-gray-800 font-medium">{{ $book->name }}</h1>
                 
                 <div class="flex flex-row items-center">
-                  <div class="text-xs line-through mr-1">19,99&euro;</div>
-                  <div class="text-red-600 text-lg">9,99&euro;</div>
+                  <div class="@if ($book->discount) text-xs line-through @endif mr-1">{{ $book->price }}&euro;</div>
+                  @if ($book->discount)
+                    <div class="text-red-600 text-lg">{{ $book->discount_price }}&euro;</div>
+                  @endif
                 </div>
               </div>
             </div>

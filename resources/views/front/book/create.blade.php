@@ -17,6 +17,12 @@
                         </div>
 
                         <div class="mb-2">
+                            <x-label for="price" :value="__('Price*')" />
+            
+                            <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" min="1" step="0.01" required />
+                        </div>
+
+                        <div class="mb-2">
                             <x-label for="authors" value="Authors*" />
 
                             <x-input id="name" class="block mt-1 w-full" type="text" name="authors" :value="old('authors')" placeholder="J. K. Rowling, William Shakespeare" required />

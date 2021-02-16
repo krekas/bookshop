@@ -27,6 +27,7 @@ class CreateBookRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required',
             'genre' => 'required',
+            'price' => 'required',
             'authors' => 'required'
         ];
     }

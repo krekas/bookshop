@@ -12,6 +12,7 @@ class BookController extends Controller
 {
     public function show(Book $book)
     {
+        // dd($book);
         $reviews = Review::with('users')->latest()->whereBookId($book->id)->get();
 
         return view('front.book.show', compact('book', 'reviews'));

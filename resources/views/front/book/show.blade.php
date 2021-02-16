@@ -79,7 +79,11 @@
                   <p class="leading-relaxed mb-4">{{ $book->description }}</p>
                   
                   <div class="flex">
-                    <span class="title-font font-medium text-2xl text-gray-900">$58.00</span>
+                    {{-- <span class="title-font font-medium text-2xl text-gray-900 @if ($book->discount) line-through @endif">{{ $book->price }}&euro; {{ $book->discount_price }}</span> --}}
+                    <div class="flex flex-row items-center">
+                      <div class="@if ($book->discount) text-md line-through @else text-2xl @endif mr-1">{{ $book->price }}&euro;</div>
+                      @if ($book->discount)<div class="text-red-600 font-medium text-2xl">{{ $book->discount_price }}&euro;</div>@endif
+                    </div>
                     <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
                     <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                       <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">

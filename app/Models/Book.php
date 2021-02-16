@@ -13,7 +13,9 @@ class Book extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['name', 'slug', 'description', 'user_id', 'approved'];
+    protected $fillable = ['name', 'slug', 'description', 'price', 'discount', 'user_id', 'approved'];
+
+    protected $casts = ['discount' => 'integer' ];
 
     protected $perPage = 10;
 
@@ -52,6 +54,11 @@ class Book extends Model
     public function scopeNewest($query)
     {
         return $query->orderBy('created_at', 'ASC');
+    }
+
+    public function getDiscountPriceAttribute()
+    {
+        return $this->price - ($this->price * ($this->discount / 100));
     }
 
     // Is Povilo review video
