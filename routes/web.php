@@ -25,13 +25,18 @@ use App\Http\Controllers\UserSettingsController;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/book/create', [BookController::class, 'create'])->name('books.create')->middleware('auth');
-Route::post('/book/store', [BookController::class, 'store'])->name('books.store')->middleware('auth');
-Route::post('/book/review/{book}', [ReviewController::class, 'store'])->name('books.review.store')->middleware('auth');
-Route::get('/book/{book:slug}', [BookController::class, 'show'])->name('books.show');
+Route::get('book/create', [BookController::class, 'create'])->name('books.create')->middleware('auth');
+Route::post('book/store', [BookController::class, 'store'])->name('books.store')->middleware('auth');
+Route::post('book/review/{book}', [ReviewController::class, 'store'])->name('books.review.store')->middleware('auth');
+Route::get('book/{book:slug}', [BookController::class, 'show'])->name('books.show');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {
     Route::name('user.')->group(function () {
+        Route::get('books', [BookController::class, 'index'])->name('books.list');
+        Route::get('books/{book:slug}/edit', [BookController::class, 'edit'])->name('books.edit');
+        Route::put('books/{book:slug}', [BookController::class, 'update'])->name('books.update');
+        Route::delete('books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+
         Route::view('settings', 'front.user.settings')->name('settings');
         Route::post('settings/{user}', [UserSettingsController::class, 'update'])->name('settings.update');
         Route::post('settings/password/change/{user}', [UserChangePassword::class, 'update'])->name('password.update');
@@ -43,7 +48,7 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
         Route::get('/', AdminDashboardController::class)->name('index');
         
         Route::resource('books', AdminBooksController::class);
-        Route::get('/book/approve/{book}', [AdminBooksController::class, 'approveBook'])->name('books.approve');
+        Route::get('book/approve/{book}', [AdminBooksController::class, 'approveBook'])->name('books.approve');
         Route::resource('genres', AdminGenreController::class);
         Route::resource('authors', AdminAuthorController::class);
         Route::resource('users', AdminUsersController::class);

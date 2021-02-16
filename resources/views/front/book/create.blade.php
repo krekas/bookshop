@@ -32,11 +32,12 @@
                         <div class="mb-2">
                             <x-label for="genre[]" value="Genre*" />
 
-                            <select name="genre[]" id="genre" multiple data-live-search="true" class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @foreach ($genres as $genre)
-                                    <option class="py-1" value="{{ $genre->id }}">{{ $genre->name }}</option>
-                                @endforeach
-                            </select>
+                            <div class="flex items-center">
+                            @foreach ($genres as $genre)
+                                <input type="checkbox" name="genre[]" id="{{ $genre->id }}" value="{{ $genre->id }}" @if (in_array($genre->id, old('genre', []))) checked @endif class="form-radio h-4 w-4 text-blue-600 mr-1">
+                                <label for="{{ $genre->id }}" class="mr-2">{{ $genre->name }}</label>
+                            @endforeach
+                            </div>
                         </div>
 
                         <div class="mb-2">

@@ -109,7 +109,7 @@
                 </div>
 
                 @foreach ($reviews as $review)
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap p-2 mb-4">
+                <div class="bg-white overflow-hidden shadow-md sm:rounded-lg flex flex-wrap p-2 mb-4">
                   <div class="sm:w-1/5 w-full font-semibold">
                     {{ $review->users->name }}
                   </div>
