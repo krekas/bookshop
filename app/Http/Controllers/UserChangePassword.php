@@ -13,7 +13,7 @@ class UserChangePassword extends Controller
     {
         $request->validate([
             'old_password' => ['required', new OldPasswordCheck()],
-            'new_password' => ['required', 'string', 'confirmed', 'max:255', 'min:8', new NotSameAsOldPassword()],
+            'new_password' => ['required', 'string', 'confirmed', 'max:255', 'min:8'],
         ]);
 
         $user->update(['password' => bcrypt($request->new_password)]);

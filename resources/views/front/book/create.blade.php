@@ -25,7 +25,7 @@
                         <div class="mb-2">
                             <x-label for="authors" value="Authors*" />
 
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="authors" :value="old('authors')" placeholder="J. K. Rowling, William Shakespeare" required />
+                            <x-input id="authors" class="block mt-1 w-full" type="text" name="authors" :value="old('authors')" placeholder="J. K. Rowling, William Shakespeare" required />
                             <span class="text-xs text-gray-400">Separated by comma</span>
                         </div>
 

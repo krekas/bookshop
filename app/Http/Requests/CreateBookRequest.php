@@ -40,5 +40,7 @@ class CreateBookRequest extends FormRequest
                 'approved' => true
             ]);
         }
+
+        return parent::validated();
     }
 }

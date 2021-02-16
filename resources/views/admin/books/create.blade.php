@@ -14,6 +14,12 @@
                         </div>
 
                         <div class="mb-2">
+                            <x-label for="price" :value="__('Price')" />
+            
+                            <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" min="1" step="0.01" required />
+                        </div>
+
+                        <div class="mb-2">
                             <x-label for="authors[]" value="Authors" />
 
                             <select name="authors[]" id="authors" multiple data-live-search="true" class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">

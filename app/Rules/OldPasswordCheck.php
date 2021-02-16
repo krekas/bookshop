@@ -36,6 +36,6 @@ class OldPasswordCheck implements Rule
      */
     public function message()
     {
-        return 'Wrong old password..';
+        return 'Wrong old password.';
     }
 }

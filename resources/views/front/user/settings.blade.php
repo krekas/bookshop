@@ -3,6 +3,8 @@
         <div class="container max-w-7xl px-5 mx-auto mt-6">
             <x-alert />
 
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
             <div>
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                   <div class="md:col-span-1">

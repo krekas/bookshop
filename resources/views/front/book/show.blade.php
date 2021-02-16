@@ -2,7 +2,7 @@
     <section class="text-gray-600 body-font">
         <div class="container max-w-7xl px-5 mx-auto mt-6">
 
-          @if (!$book->approved)
+          @unless($book->approved)
           <div class="bg-blue-100 p-5 w-4/5 border-l-4 mx-auto border-blue-500 mb-4">
               <div class="flex space-x-3">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -13,7 +13,7 @@
                   <div class="flex-1 leading-tight text-sm text-blue-700">This book still needs to be approved</div>
               </div>
           </div>
-          @endif
+          @endunless
 
               <div class="lg:w-4/5 mx-auto flex flex-wrap">
                 <img alt="ecommerce" class="lg:w-1/3 w-full h-64 object-cover object-center rounded" src="https://dummyimage.com/330x400">
