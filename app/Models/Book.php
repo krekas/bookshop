@@ -58,7 +58,7 @@ class Book extends Model
 
     public function getDiscountPriceAttribute()
     {
-        return $this->price - ($this->price * ($this->discount / 100));
+        return number_format($this->price - ($this->price * ($this->discount / 100)), 2);
     }
 
     // Is Povilo review video
