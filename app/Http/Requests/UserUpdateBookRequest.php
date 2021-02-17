@@ -26,9 +26,10 @@ class UserUpdateBookRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required',
+            'cover' => 'nullable|image',
             'genre' => 'required',
             'price' => 'required',
-            'discount' => 'numeric|between:1,99',
+            'discount' => 'nullable|numeric|between:1,99',
             'authors' => 'required'
         ];
     }

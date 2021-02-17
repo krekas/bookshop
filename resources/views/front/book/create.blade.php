@@ -7,8 +7,7 @@
 
                     <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
-                    <form method="POST" action="{{ route('books.store') }}" class="sm:w-4/6 w-full"
-                          enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('books.store') }}" class="sm:w-4/6 w-full" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-2">

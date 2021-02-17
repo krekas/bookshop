@@ -8,6 +8,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Review;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -36,12 +37,9 @@ class BookController extends Controller
     {
         $authors = explode(',', $request->authors);
 
-        $fileName = time() . '.' . $request->file('cover')->extension();
+        $book = auth()->user()->books()->create($request->validated());
 
-        $book = auth()->user()->books()->create(
-            array_merge($request->validated(), [
-                'cover' => $fileName
-            ]));
+        $this->uploadImage($request->file('cover'), $book);
 
         $book->genres()->attach($request->genre);
 
@@ -49,8 +47,6 @@ class BookController extends Controller
             $author = Author::updateOrCreate(['name' => $authorName]);
             $book->authors()->attach($author);
         }
-
-        $request->file('cover')->storeAs('covers', $fileName, 'public');
 
         return redirect()->route('books.show', $book)->with('success', 'Book created.');
     }
@@ -73,6 +69,12 @@ class BookController extends Controller
 
         $authors = explode(',', $request->authors);
 
+        if ($request->file('cover')) {
+            $book->cover->delete();
+
+            $this->uploadImage($request->file('cover'), $book);
+        }
+
         $book->update($request->validated());
 
         $book->genres()->sync($request->genre);
@@ -80,7 +82,7 @@ class BookController extends Controller
         $updatedAuthors = [];
 
         foreach ($authors as $authorName) {
-            $author = Author::where('name', 'like', '{%$authorName%}')->first();
+            $author = Author::where('name', 'like', $authorName)->first();
             if ($author) {
                 $updatedAuthors[] = $author->id;
             } else {
@@ -90,7 +92,7 @@ class BookController extends Controller
 
         $book->authors()->sync($updatedAuthors);
 
-        return redirect()->route('user.books.list')->with('success', 'Book updated.');
+        return redirect()->route('books.show', $book)->with('success', 'Book updated.');
     }
 
     public function destroy(Book $book)
@@ -100,5 +102,16 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->route('front.user.books.list')->with('success', 'Book deleted.');
+    }
+
+    private function uploadImage($file, $book)
+    {
+        $fileName = time() . '.' . $file->extension();
+
+        $file->storeAs('covers', $fileName, 'public');
+
+        $path = storage_path() . '/app/public/covers/';
+
+        $book->addMedia($path . $fileName)->toMediaCollection('covers');
     }
 }

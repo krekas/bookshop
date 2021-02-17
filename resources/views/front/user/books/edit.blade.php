@@ -7,7 +7,7 @@
 
                     <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
-                    <form method="POST" action="{{ route('user.books.update', $book) }}" class="sm:w-4/6 w-full">
+                    <form method="POST" action="{{ route('user.books.update', $book) }}" class="sm:w-4/6 w-full" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -25,13 +25,20 @@
                                 <x-input id="price" class="block mt-1 w-full" type="number" name="price"
                                          :value="$book->price" min="1" step="0.01" required/>
                             </div>
+
                             <div class="mb-2 flex-1 ml-2">
                                 <x-label for="discount" :value="__('Discount')"/>
 
                                 <x-input id="discount" class="block mt-1 w-full" type="number" name="discount"
-                                         :value="$book->discount" min="1" max="99" required/>
+                                         :value="$book->discount" min="1" max="99"/>
                                 <span class="text-xs text-gray-400">Discount in percentage (%).</span>
                             </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <x-label for="cover" :value="__('Cover')"/>
+
+                            <x-input id="cover" class="block mt-1 w-full" type="file" name="cover"/>
                         </div>
 
                         <div class="mb-2">

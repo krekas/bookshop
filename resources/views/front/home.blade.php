@@ -21,7 +21,7 @@
                         <a href="{{ route('books.show', $book) }}">
                             <div class="border-solid border border-gray-200 rounded-lg">
                                 <img class="h-56 rounded-tl rounded-tr w-full object-cover object-center"
-                                     src="https://dummyimage.com/222x224" alt="content">
+                                     src="{{ asset($book->cover->getUrl('cover')) }}" alt="content">
                                 <div class="m-2">
                                     <p class="text-xs">
                                         @foreach ($book->authors as $author)
