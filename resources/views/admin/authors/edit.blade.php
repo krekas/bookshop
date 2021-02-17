@@ -9,9 +9,10 @@
                         @method('PUT')
 
                         <div class="mb-2">
-                            <x-label for="name" :value="__('Name')" />
-            
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $author->name }}" required autofocus />
+                            <x-label for="name" :value="__('Name')"/>
+
+                            <x-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                     value="{{ $author->name }}" required autofocus/>
                         </div>
 
                         <x-button class="ml-3">

@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\AdminBooksController;
-use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminAuthorController;
+use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserChangePassword;
 use App\Http\Controllers\UserSettingsController;
@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {
 Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {
         Route::get('/', AdminDashboardController::class)->name('index');
-        
+
         Route::resource('books', AdminBooksController::class);
         Route::get('book/approve/{book}', [AdminBooksController::class, 'approveBook'])->name('books.approve');
         Route::resource('genres', AdminGenreController::class);
@@ -55,4 +55,4 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

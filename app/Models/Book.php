@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Genre;
-use App\Models\Author;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
@@ -15,7 +13,7 @@ class Book extends Model
 
     protected $fillable = ['name', 'slug', 'cover', 'description', 'price', 'discount', 'user_id', 'approved'];
 
-    protected $casts = ['discount' => 'integer' ];
+    protected $casts = ['discount' => 'integer'];
 
     protected $perPage = 10;
 
@@ -39,7 +37,7 @@ class Book extends Model
         return round($this->reviews()->avg('rating'), 1);
     }
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')

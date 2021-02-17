@@ -35,8 +35,7 @@ class CreateBookRequest extends FormRequest
 
     public function validated()
     {
-        if (auth()->user()->admin)
-        {
+        if (auth()->user()->admin) {
             return array_merge(parent::validated(), [
                 'approved' => true
             ]);

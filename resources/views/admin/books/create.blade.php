@@ -8,21 +8,24 @@
                         @csrf
 
                         <div class="mb-2">
-                            <x-label for="name" :value="__('Name')" />
-            
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                            <x-label for="name" :value="__('Name')"/>
+
+                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                                     required autofocus/>
                         </div>
 
                         <div class="mb-2">
-                            <x-label for="price" :value="__('Price')" />
-            
-                            <x-input id="price" class="block mt-1 w-full" type="number" name="price" :value="old('price')" min="1" step="0.01" required />
+                            <x-label for="price" :value="__('Price')"/>
+
+                            <x-input id="price" class="block mt-1 w-full" type="number" name="price"
+                                     :value="old('price')" min="1" step="0.01" required/>
                         </div>
 
                         <div class="mb-2">
-                            <x-label for="authors[]" value="Authors" />
+                            <x-label for="authors[]" value="Authors"/>
 
-                            <select name="authors[]" id="authors" multiple data-live-search="true" class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <select name="authors[]" id="authors" multiple data-live-search="true"
+                                    class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @foreach ($authors as $author)
                                     <option class="py-1" value="{{ $author->id }}">{{ $author->name }}</option>
                                 @endforeach
@@ -30,9 +33,10 @@
                         </div>
 
                         <div class="mb-2">
-                            <x-label for="genre[]" value="Genre" />
+                            <x-label for="genre[]" value="Genre"/>
 
-                            <select name="genre[]" id="genre" multiple data-live-search="true" class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <select name="genre[]" id="genre" multiple data-live-search="true"
+                                    class="form-multiselect w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @foreach ($genres as $genre)
                                     <option class="py-1" value="{{ $genre->id }}">{{ $genre->name }}</option>
                                 @endforeach
@@ -40,7 +44,8 @@
                         </div>
 
                         <div class="mb-2">
-                            <textarea name="description" id="description" cols="30" rows="10" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('description') }}</textarea>
+                            <textarea name="description" id="description" cols="30" rows="10"
+                                      class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('description') }}</textarea>
                         </div>
 
                         <x-button class="ml-3">

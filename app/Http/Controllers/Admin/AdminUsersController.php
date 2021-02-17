@@ -29,8 +29,7 @@ class AdminUsersController extends Controller
 
     public function destroy(User $user)
     {
-        if (User::first()->id == $user->id)
-        {
+        if (User::first()->id == $user->id) {
             return redirect()->route('admin.users.index')->with('error', 'First user cannot be deleted.');
         }
 

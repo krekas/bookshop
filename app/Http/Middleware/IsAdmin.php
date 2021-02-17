@@ -10,17 +10,16 @@ class IsAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user() && !auth()->user()->admin)
-        {
+        if (!auth()->user() && !auth()->user()->admin) {
             return abort(403);
         }
-        
+
         return $next($request);
     }
 }
