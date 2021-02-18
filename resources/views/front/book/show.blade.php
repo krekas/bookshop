@@ -16,7 +16,7 @@
                 </div>
             @endunless
 
-            <x-alert />
+            <x-alert/>
 
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
                 {{-- <img alt="ecommerce" class="lg:w-1/3 w-full h-64 object-cover object-center rounded" src="https://dummyimage.com/330x400"> --}}
@@ -63,7 +63,8 @@
                             @endfor
                             </span>
 
-                            <span class="text-gray-600 ml-3">{{ $reviews->count() }} {{ Str::plural('Review', $reviews->count()) }}</span>
+                            <span
+                                class="text-gray-600 ml-3">{{ $reviews->count() }} {{ Str::plural('Review', $reviews->count()) }}</span>
                             </span>
 
                         </div>
@@ -98,8 +99,7 @@
                             @csrf
                             <textarea name="review" id="review" cols="30" rows="3"
                                       class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                      @guest disabled @endguest>{{ old('review') }}@guest Login to leave a
-                                review @endguest</textarea>
+                                      @guest disabled @endguest>{{ old('review') }}@guest Login to leave a review @endguest</textarea>
                             <div class="flex justify-between">
                                 @auth
                                     <div class="flex items-center">

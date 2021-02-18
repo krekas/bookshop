@@ -22,14 +22,14 @@ class DatabaseSeeder extends Seeder
             GenresSeeder::class
         ]);
 
-        $genres = Genre::all()->random(rand(1, 3))->pluck('id');
-        $authors = Author::all()->random(rand(1, 3))->pluck('id');
+        $genres = Genre::all()->pluck('id');
+        $authors = Author::all()->pluck('id');
 
         Book::factory(55)->create()->each(
             function ($book) use ($genres, $authors) {
-                $book->genres()->attach($genres);
+                $book->genres()->attach($genres->random(rand(1, 2)));
 
-                $book->authors()->attach($authors);
+                $book->authors()->attach($authors->random(rand(1, 2)));
             }
         );
     }
