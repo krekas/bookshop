@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $search = request('search');
 
-        $books = Book::with('authors')
+        $books = Book::with('authors', 'media')
             ->when(request('search'), function ($query) use ($search) {
 
                 $query->where('name', 'like', "%{$search}%")

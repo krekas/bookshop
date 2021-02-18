@@ -8,6 +8,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Review;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
@@ -21,9 +22,12 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
+
         $reviews = Review::with('users')->latest()->whereBookId($book->id)->get();
 
-        return view('front.book.show', compact('book', 'reviews'));
+        $rating = collect($reviews)->avg('rating');
+
+        return view('front.book.show', compact('book', 'reviews', 'rating'));
     }
 
     public function create()
@@ -101,17 +105,11 @@ class BookController extends Controller
 
         $book->delete();
 
-        return redirect()->route('front.user.books.list')->with('success', 'Book deleted.');
+        return redirect()->route('user.books.list')->with('success', 'Book deleted.');
     }
 
     private function uploadImage($file, $book)
     {
-        $fileName = time() . '.' . $file->extension();
-
-        $file->storeAs('covers', $fileName, 'public');
-
-        $path = storage_path() . '/app/public/covers/';
-
-        $book->addMedia($path . $fileName)->toMediaCollection('covers');
+        $book->addMedia($file)->toMediaCollection('covers');
     }
 }

@@ -3,7 +3,7 @@
         <div class="container max-w-7xl px-5 mx-auto mt-6">
 
             @unless($book->approved)
-                <div class="bg-blue-100 p-5 w-4/5 border-l-4 mx-auto border-blue-500 mb-4">
+                <div class="bg-blue-100 p-5 w-full border-l-4 mx-auto border-blue-500 mb-4">
                     <div class="flex space-x-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                              class="flex-none fill-current text-blue-500 h-4 w-4">
@@ -45,7 +45,7 @@
                         <div class="flex md:ml-auto md:mr-0 mx-auto items-center flex-shrink-0 space-x-4">
                         <span class="flex items-center">
                           @for ($i=0; $i < 5; $i++)
-                                @if ($i < $book->avg_rating)
+                                @if ($i < $rating)
                                     <svg fill="currentColor" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500"
                                          viewBox="0 0 24 24">
@@ -63,7 +63,7 @@
                             @endfor
                             </span>
 
-                            <span class="text-gray-600 ml-3">{{ $reviews->count() }} Reviews</span>
+                            <span class="text-gray-600 ml-3">{{ $reviews->count() }} {{ Str::plural('Review', $reviews->count()) }}</span>
                             </span>
 
                         </div>

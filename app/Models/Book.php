@@ -36,11 +36,6 @@ class Book extends Model implements HasMedia
         return $this->hasMany(Review::class);
     }
 
-    public function getAvgRatingAttribute()
-    {
-        return round($this->reviews()->avg('rating'), 1);
-    }
-
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

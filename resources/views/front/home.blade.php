@@ -1,19 +1,17 @@
 <x-app-layout>
     <section class="text-gray-600 body-font">
         <div class="container max-w-7xl px-5 mx-auto mt-6">
-            <div class="flex flex-wrap -m-4">
+            <div class="flex flex-wrap -m-4 mb-4">
                 @foreach ($books as $book)
                     <div class="xl:w-1/5 md:w-1/2 w-full p-4 relative">
                         @if ($book->is_new)
-                            <div
-                                class="text-xs px-3 bg-green-200 text-green-800 rounded-full uppercase absolute -ml-4 mt-2 p-1">
+                            <div class="text-xs px-3 bg-green-200 text-green-800 rounded-full uppercase absolute -ml-4 mt-2 p-1">
                                 New
                             </div>
                         @endif
 
                         @if ($book->discount)
-                            <div
-                                class="text-xs px-3 bg-red-200 text-red-700 font-semibold rounded-full absolute -ml-4 mt-10 p-1">
+                            <div class="text-xs px-3 bg-red-200 text-red-700 font-semibold rounded-full absolute -ml-4 mt-10 p-1">
                                 -{{ $book->discount }}%
                             </div>
                         @endif
