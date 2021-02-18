@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthorController;
-use App\Http\Controllers\Admin\AdminBooksController;
+use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminUsersController;
@@ -25,14 +25,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('book/create', [BookController::class, 'create'])->name('books.create')->middleware('auth');
-Route::post('book/store', [BookController::class, 'store'])->name('books.store')->middleware('auth');
-Route::post('book/review/{book}', [ReviewController::class, 'store'])->name('books.review.store')->middleware('auth');
-Route::get('book/{book:slug}/report/create', [BookReportController::class, 'create'])->name('books.report.create')->middleware('auth');
-Route::post('book/{book}/report', [BookReportController::class, 'store'])->name('books.report.store')->middleware('auth');
-Route::get('book/{book:slug}', [BookController::class, 'show'])->name('books.show');
+Route::name('books.')->group(function () {
+    Route::group(['middleware' => 'auth', 'prefix' => 'book'], function () {
+        Route::get('create', [BookController::class, 'create'])->name('create');
+        Route::post('store', [BookController::class, 'store'])->name('store');
+        Route::post('review/{book}', [ReviewController::class, 'store'])->name('review.store');
+        Route::get('{book:slug}/report/create', [BookReportController::class, 'create'])->name('report.create');
+        Route::post('{book}/report', [BookReportController::class, 'store'])->name('report.store');
+    });
+    Route::get('book/{book:slug}', [BookController::class, 'show'])->name('show');
+});
 
-Route::group(['middleware' => 'auth', 'prefix' => 'user', 'name' => 'user.'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {
     Route::name('user.')->group(function () {
         Route::get('books', [BookController::class, 'index'])->name('books.list');
         Route::get('books/{book:slug}/edit', [BookController::class, 'edit'])->name('books.edit');
@@ -49,8 +53,8 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
     Route::name('admin.')->group(function () {
         Route::get('/', AdminDashboardController::class)->name('index');
 
-        Route::resource('books', AdminBooksController::class);
-        Route::get('book/approve/{book}', [AdminBooksController::class, 'approveBook'])->name('books.approve');
+        Route::resource('books', AdminBookController::class);
+        Route::get('book/approve/{book}', [AdminBookController::class, 'approveBook'])->name('books.approve');
         Route::resource('genres', AdminGenreController::class);
         Route::resource('authors', AdminAuthorController::class);
         Route::resource('users', AdminUsersController::class);

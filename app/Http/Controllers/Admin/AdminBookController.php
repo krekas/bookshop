@@ -8,7 +8,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
 
-class AdminBooksController extends Controller
+class AdminBookController extends Controller
 {
     public function index()
     {

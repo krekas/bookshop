@@ -19,7 +19,7 @@ class Book extends Model implements HasMedia
 
     protected $casts = ['discount' => 'integer'];
 
-    protected $perPage = 10;
+    protected $perPage = 25;
 
     public function authors()
     {
