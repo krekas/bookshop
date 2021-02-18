@@ -24,11 +24,23 @@
                 <div class="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <div class="flex justify-between items-center border-solid border-b-2 border-light-blue-500">
                         <h1 class="text-gray-900 text-3xl title-font font-medium tracking-widest mb-1">{{ $book->name }}</h1>
-                        @auth
-                            <a href="{{ route('books.report.create', $book) }}" class="bg-transparent hover:bg-red-400 text-red-400 font-semibold hover:text-white text-xs py-1 px-4 border border-red-400 hover:border-transparent rounded">
-                                Report
-                            </a>
-                        @endauth
+                        <div>
+                            @admin
+                                <form method="POST" action="{{ route('admin.books.destroy', $book) }}" class="inline-flex">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        class="bg-transparent text-red-400 hover:text-red-600 p-0 ml-2 border-none">
+                                        Remove
+                                    </button>
+                                </form>
+                            @endadmin
+                            @auth
+                                <a href="{{ route('books.report.create', $book) }}" class="bg-transparent hover:bg-red-400 text-red-400 font-semibold hover:text-white text-xs py-1 px-4 border border-red-400 hover:border-transparent rounded">
+                                    Report
+                                </a>
+                            @endauth
+                        </div>
                     </div>
 
                     <div class="flex items-center md:flex-row flex-col mb-4">
