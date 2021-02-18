@@ -83,8 +83,14 @@
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
                                     <div class="flex justify-center">
                                         @if ($book->approved == 0)
-                                            <a href="{{ route('admin.books.approve', $book) }}"
-                                               class="text-blue-400 hover:text-blue-600 underline mr-2">Approve</a>
+                                            <form method="POST" action="{{ route('admin.books.approve', $book) }}" class="mr-2">
+                                                @csrf
+                                                @method('PUT')
+                                                <button
+                                                    class="bg-transparent text-blue-400 hover:text-blue-600 underline p-0 border-none">
+                                                    Approve
+                                                </button>
+                                            </form>
                                         @endif
                                         <a href="{{ route('admin.books.edit', $book) }}"
                                            class="text-blue-400 hover:text-blue-600 underline">Edit</a>
@@ -92,7 +98,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button
-                                                class="flex-inline bg-transparent text-blue-400 hover:text-blue-600 underline p-0 ml-2 border-none">
+                                                class="bg-transparent text-blue-400 hover:text-blue-600 underline p-0 ml-2 border-none">
                                                 Remove
                                             </button>
                                         </form>

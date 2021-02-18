@@ -54,7 +54,7 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
         Route::get('/', AdminDashboardController::class)->name('index');
 
         Route::resource('books', AdminBookController::class);
-        Route::get('book/approve/{book}', [AdminBookController::class, 'approveBook'])->name('books.approve');
+        Route::put('book/approve/{book}', [AdminBookController::class, 'approveBook'])->name('books.approve');
         Route::resource('genres', AdminGenreController::class);
         Route::resource('authors', AdminAuthorController::class);
         Route::resource('users', AdminUsersController::class);
