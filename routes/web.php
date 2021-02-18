@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Admin\AdminAuthorController;
 use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookReportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserChangePassword;
 use App\Http\Controllers\UserSettingsController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +28,11 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('book/create', [BookController::class, 'create'])->name('books.create')->middleware('auth');
 Route::post('book/store', [BookController::class, 'store'])->name('books.store')->middleware('auth');
 Route::post('book/review/{book}', [ReviewController::class, 'store'])->name('books.review.store')->middleware('auth');
+Route::get('book/{book:slug}/report/create', [BookReportController::class, 'create'])->name('books.report.create')->middleware('auth');
+Route::post('book/{book}/report', [BookReportController::class, 'store'])->name('books.report.store')->middleware('auth');
 Route::get('book/{book:slug}', [BookController::class, 'show'])->name('books.show');
 
-Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'user', 'name' => 'user.'], function () {
     Route::name('user.')->group(function () {
         Route::get('books', [BookController::class, 'index'])->name('books.list');
         Route::get('books/{book:slug}/edit', [BookController::class, 'edit'])->name('books.edit');

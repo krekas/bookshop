@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="mb-2">
-                            <textarea name="description" id="description" cols="30" rows="10"
+                            <textarea name="description" id="description" cols="30" rows="10" required
                                       class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('description') }}</textarea>
                         </div>
 

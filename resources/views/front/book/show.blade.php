@@ -19,11 +19,17 @@
             <x-alert/>
 
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                {{-- <img alt="ecommerce" class="lg:w-1/3 w-full h-64 object-cover object-center rounded" src="https://dummyimage.com/330x400"> --}}
                 <img alt="{{ $book->name }}" class="lg:w-1/3 w-full h-96 object-cover object-center rounded"
                      src="{{ asset($book->cover->getUrl('cover')) }}">
                 <div class="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                    <h1 class="text-gray-900 text-3xl title-font font-medium tracking-widest mb-1 border-solid border-b-2 border-light-blue-500">{{ $book->name }}</h1>
+                    <div class="flex justify-between items-center border-solid border-b-2 border-light-blue-500">
+                        <h1 class="text-gray-900 text-3xl title-font font-medium tracking-widest mb-1">{{ $book->name }}</h1>
+                        @auth
+                            <a href="{{ route('books.report.create', $book) }}" class="bg-transparent hover:bg-red-400 text-red-400 font-semibold hover:text-white text-xs py-1 px-4 border border-red-400 hover:border-transparent rounded">
+                                Report
+                            </a>
+                        @endauth
+                    </div>
 
                     <div class="flex items-center md:flex-row flex-col mb-4">
                         <div class="flex flex-col md:pr-10 md:mb-0 mb-1 pr-0 w-full md:w-auto">
@@ -99,7 +105,9 @@
                             @csrf
                             <textarea name="review" id="review" cols="30" rows="3"
                                       class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                      @guest disabled @endguest>{{ old('review') }}@guest Login to leave a review @endguest</textarea>
+                                      @guest disabled @endguest>{{ old('review') }}
+                                      @guest Login to leave a review @endguest
+                            </textarea>
                             <div class="flex justify-between">
                                 @auth
                                     <div class="flex items-center">

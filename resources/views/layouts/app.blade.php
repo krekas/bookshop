@@ -30,7 +30,7 @@
 
 
 <!-- Page Content -->
-    <main>
+    <main x-data="{ 'isDialogOpen': false }" @keydown.escape="isDialogOpen = false">
         {{ $slot }}
     </main>
 
