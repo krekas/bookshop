@@ -58,6 +58,11 @@ class Book extends Model implements HasMedia
         return $query->orderBy('created_at', 'ASC');
     }
 
+    public function approve()
+    {
+        return $this->update(['approved' => 1]);
+    }
+
     public function getDiscountPriceAttribute()
     {
         return number_format($this->price - ($this->price * ($this->discount / 100)), 2);

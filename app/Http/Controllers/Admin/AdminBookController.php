@@ -73,7 +73,7 @@ class AdminBookController extends Controller
 
     public function approveBook(Book $book)
     {
-        $book->update(['approved' => 1]);
+        $book->approve();
 
         return redirect()->route('admin.books.index')->with('success', 'Book approved.');
     }
