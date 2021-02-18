@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminUpdateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Models\User;
 
 class AdminUsersController extends Controller
@@ -20,7 +20,7 @@ class AdminUsersController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(AdminUpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
 

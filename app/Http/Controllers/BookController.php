@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBookRequest;
-use App\Http\Requests\UserUpdateBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
@@ -67,14 +67,14 @@ class BookController extends Controller
         return view('front.user.books.edit', compact('book', 'genres', 'authors'));
     }
 
-    public function update(UserUpdateBookRequest $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
         abort_unless(auth()->user()->id == $book->user_id, 403);
 
         $authors = explode(',', $request->authors);
 
         if ($request->file('cover')) {
-            $book->cover->delete();
+            $book->media()->delete();
 
             $this->uploadImage($request->file('cover'), $book);
         }
