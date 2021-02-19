@@ -30,7 +30,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button
-                                        class="bg-transparent text-red-400 hover:text-red-600 p-0 ml-2 border-none">
+                                        class="bg-transparent text-red-400 hover:text-red-600 p-0 ml-2 border-none text-sm">
                                         Remove
                                     </button>
                                 </form>

@@ -36,29 +36,25 @@ Route::name('books.')->group(function () {
     Route::get('book/{book:slug}', [BookController::class, 'show'])->name('show');
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => 'user'], function () {
-    Route::name('user.')->group(function () {
-        Route::get('books', [BookController::class, 'index'])->name('books.list');
-        Route::get('books/{book:slug}/edit', [BookController::class, 'edit'])->name('books.edit');
-        Route::put('books/{book:slug}', [BookController::class, 'update'])->name('books.update');
-        Route::delete('books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function () {
+    Route::get('books', [BookController::class, 'index'])->name('books.list');
+    Route::get('books/{book:slug}/edit', [BookController::class, 'edit'])->name('books.edit');
+    Route::put('books/{book:slug}', [BookController::class, 'update'])->name('books.update');
+    Route::delete('books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
 
-        Route::view('settings', 'front.user.settings')->name('settings');
-        Route::post('settings/{user}', [UserSettingsController::class, 'update'])->name('settings.update');
-        Route::post('settings/password/change/{user}', [UserChangePassword::class, 'update'])->name('password.update');
-    });
+    Route::view('settings', 'front.user.settings')->name('settings');
+    Route::post('settings/{user}', [UserSettingsController::class, 'update'])->name('settings.update');
+    Route::post('settings/password/change/{user}', [UserChangePassword::class, 'update'])->name('password.update');
 });
 
-Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin'], function () {
-    Route::name('admin.')->group(function () {
-        Route::get('/', AdminDashboardController::class)->name('index');
+Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', AdminDashboardController::class)->name('index');
 
-        Route::resource('books', AdminBookController::class);
-        Route::put('book/approve/{book}', [AdminBookController::class, 'approveBook'])->name('books.approve');
-        Route::resource('genres', AdminGenreController::class);
-        Route::resource('authors', AdminAuthorController::class);
-        Route::resource('users', AdminUsersController::class);
-    });
+    Route::resource('books', AdminBookController::class);
+    Route::put('book/approve/{book}', [AdminBookController::class, 'approveBook'])->name('books.approve');
+    Route::resource('genres', AdminGenreController::class);
+    Route::resource('authors', AdminAuthorController::class);
+    Route::resource('users', AdminUsersController::class);
 });
 
 require __DIR__ . '/auth.php';
