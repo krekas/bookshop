@@ -37,9 +37,9 @@ class BookFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Book $book) {
-            $url = 'https://via.placeholder.com/640x480.webp/C7D2FE?text=' . $book->name;
+            $path = public_path('storage/blank_cover.png');
 
-            $book->addMediaFromUrl($url)->toMediaCollection('covers');
+            $book->addMedia($path)->preservingOriginal()->toMediaCollection('covers');
         });
     }
 }
