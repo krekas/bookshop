@@ -53,11 +53,6 @@ class Book extends Model implements HasMedia
         return $query->where('approved', 0);
     }
 
-    public function scopeNewest($query)
-    {
-        return $query->orderBy('created_at', 'ASC');
-    }
-
     public function approve()
     {
         return $this->update(['approved' => 1]);
