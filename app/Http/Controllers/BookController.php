@@ -22,7 +22,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        $reviews = Review::with('users')->latest()->whereBookId($book->id)->get();
+        $reviews = Review::with('user')->latest()->whereBookId($book->id)->get();
 
         $rating = $reviews->avg('rating');
 

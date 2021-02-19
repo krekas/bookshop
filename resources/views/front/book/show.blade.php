@@ -147,7 +147,7 @@
                 @foreach ($reviews as $review)
                     <div class="bg-white overflow-hidden shadow-md sm:rounded-lg flex flex-wrap p-2 mb-4">
                         <div class="sm:w-1/5 w-full font-semibold">
-                            {{ $review->users->name }}
+                            {{ $review->user->name }}
                         </div>
                         <div class="sm:w-4/5 w-full sm:border-l-2 sm:border-solid sm:border-gray-200 sm:pl-2">
                             {!! nl2br($review->review) !!}
