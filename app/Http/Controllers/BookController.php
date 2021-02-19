@@ -24,7 +24,7 @@ class BookController extends Controller
     {
         $reviews = Review::with('users')->latest()->whereBookId($book->id)->get();
 
-        $rating = collect($reviews)->avg('rating');
+        $rating = $reviews->avg('rating');
 
         return view('front.book.show', compact('book', 'reviews', 'rating'));
     }
