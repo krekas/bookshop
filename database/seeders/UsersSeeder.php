@@ -25,6 +25,13 @@ class UsersSeeder extends Seeder
              'date_of_birth' => Carbon::today()
          ]);
 
+         User::create([
+             'name' => 'User',
+             'email' => 'user@example.com',
+             'password' => bcrypt('password'),
+             'date_of_birth' => Carbon::today()
+         ]);
+
         User::factory()
             ->count(20)
             ->create();
