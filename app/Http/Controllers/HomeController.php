@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
@@ -13,10 +14,11 @@ class HomeController extends Controller
 
         $books = Book::with('authors', 'media')
             ->when(request('search'), function ($query) use ($search) {
+                Cookie::queue('search', $search, 60);
 
-                $query->where('name', 'like', "%{$search}%")
+                $query->where('name', 'like', $search)
                     ->orWhereHas('authors', function ($query) use ($search) {
-                        $query->where('name', 'LIKE', "%{$search}%");
+                        $query->where('name', 'LIKE', $search);
                     });
             })
             ->latest()
