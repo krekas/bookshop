@@ -30,7 +30,7 @@ class AdminBookController extends Controller
     {
         $book = auth()->user()->books()->create($request->validated());
 
-        $this->uploadImage($request->file('cover'), $book);
+        $book->attachCover($request->file('cover'));
 
         $book->genres()->attach($request->genre);
         $book->authors()->attach($request->authors);
@@ -53,7 +53,7 @@ class AdminBookController extends Controller
         if ($request->file('cover')) {
             $book->media()->delete();
 
-            $this->uploadImage($request->file('cover'), $book);
+            $book->attachCover($request->file('cover'));
         }
 
         $book->update($request->validated());
@@ -76,10 +76,5 @@ class AdminBookController extends Controller
         $book->approve();
 
         return redirect()->route('admin.books.index')->with('success', 'Book approved.');
-    }
-
-    private function uploadImage($file, $book)
-    {
-        $book->addMedia($file)->toMediaCollection('covers');
     }
 }

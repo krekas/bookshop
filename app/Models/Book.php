@@ -63,6 +63,11 @@ class Book extends Model implements HasMedia
         return $this->update(['approved' => 1]);
     }
 
+    public function attachCover($file)
+    {
+        return $this->addMedia($file)->toMediaCollection('covers');
+    }
+
     public function getDiscountPriceAttribute()
     {
         return number_format($this->price - ($this->price * ($this->discount / 100)), 2);

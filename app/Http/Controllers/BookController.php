@@ -42,7 +42,7 @@ class BookController extends Controller
 
         $book = auth()->user()->books()->create($request->validated());
 
-        $this->uploadImage($request->file('cover'), $book);
+        $book->attachCover($request->file('cover'));
 
         $book->genres()->attach($request->genre);
 
@@ -75,7 +75,7 @@ class BookController extends Controller
         if ($request->file('cover')) {
             $book->media()->delete();
 
-            $this->uploadImage($request->file('cover'), $book);
+            $book->attachCover($request->file('cover'));
         }
 
         $book->update($request->validated());
@@ -105,10 +105,5 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->route('user.books.list')->with('success', 'Book deleted.');
-    }
-
-    private function uploadImage($file, $book)
-    {
-        $book->addMedia($file)->toMediaCollection('covers');
     }
 }
