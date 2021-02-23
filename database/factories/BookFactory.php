@@ -37,7 +37,7 @@ class BookFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Book $book) {
-            $path = public_path('storage/blank_cover.png');
+            $path = storage_path('app/blank_cover.png');
 
             $book->addMedia($path)->preservingOriginal()->toMediaCollection('covers');
         });
