@@ -16,9 +16,9 @@ class HomeController extends Controller
             ->when(request('search'), function ($query) use ($search) {
                 Cookie::queue('search', $search, 60);
 
-                $query->where('name', 'like', $search)
+                $query->where('name', 'like', '%'.$search.'%')
                     ->orWhereHas('authors', function ($query) use ($search) {
-                        $query->where('name', 'LIKE', $search);
+                        $query->where('name', 'LIKE', '%'.$search.'%');
                     });
             })
             ->latest()
