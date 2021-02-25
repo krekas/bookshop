@@ -19,7 +19,7 @@ class BookResource extends JsonResource
             'name' => $this->name,
             'price' => $this->price,
             'description' => $this->when(
-                $request->is('api/v1/book/*'),
+                $request->route()->parameter('book'),
                 $this->description
             ),
             'cover' => $this->cover->getUrl('cover'),
