@@ -8,8 +8,6 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Review;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
