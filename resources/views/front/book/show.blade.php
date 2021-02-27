@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="flex md:ml-auto md:mr-0 mx-auto items-center flex-shrink-0 space-x-4">
-                            <livewire:rating :rating="$rating" />
+                            <livewire:rating :bookId="$book->id" />
 
                             <livewire:reviews-count :count="$reviews->count()" />
                         </div>
