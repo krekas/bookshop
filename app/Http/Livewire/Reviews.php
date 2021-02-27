@@ -38,6 +38,6 @@ class Reviews extends Component
         $this->emit('updateReviewsCount');
         $this->emit('updateRatingCount');
 
-        $this->reset();
+        $this->reset(['review', 'rating']);
     }
 }
