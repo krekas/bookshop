@@ -6,7 +6,14 @@ use Livewire\Component;
 
 class ReviewsCount extends Component
 {
-    public $count;
+    public $count = 0;
+
+    protected $listeners = ['updateReviewsCount'];
+
+    public function updateReviewsCount()
+    {
+        $this->count++;
+    }
 
     public function render()
     {

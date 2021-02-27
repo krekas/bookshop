@@ -6,10 +6,13 @@ use Livewire\Component;
 
 class Rating extends Component
 {
-    public $rating;
+    public $rating = 0;
+
+    protected $listeners = ['updateRatingCount' => '$refresh'];
 
     public function render()
     {
         return view('livewire.rating', ['rating' => $this->rating]);
     }
+
 }
