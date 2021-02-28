@@ -15,7 +15,7 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::with('authors', 'media')
+        $books = Book::with('authors', 'genres', 'media')
             ->approved()
             ->latest()
             ->simplePaginate();
