@@ -63,7 +63,7 @@
                         <div class="flex md:ml-auto md:mr-0 mx-auto items-center flex-shrink-0 space-x-4">
                             <livewire:rating :bookId="$book->id" />
 
-                            <livewire:reviews-count :count="$reviews->count()" />
+                            <livewire:reviews-count :bookId="$book->id" />
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
             </div>
 
             {{-- Reviews --}}
-            <livewire:reviews :reviews="$reviews->toArray()" :bookId="$book->id" />
+            <livewire:reviews :bookId="$book->id" />
 
         </div>
     </section>

@@ -8,6 +8,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Review;
+use Illuminate\Database\Eloquent\Builder;
 
 class BookController extends Controller
 {
@@ -20,9 +21,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        $reviews = Review::with('user')->latest()->where('book_id', $book->id)->get();
-
-        return view('front.book.show', compact('book', 'reviews'));
+        return view('front.book.show', compact('book'));
     }
 
     public function create()
