@@ -51,18 +51,22 @@
         </div>
     </div>
 
-    @foreach ($reviews as $review)
-        <div class="bg-white overflow-hidden shadow-md sm:rounded-lg flex flex-wrap p-2 mb-4">
-            <div class="sm:w-1/5 w-full font-semibold">
-                {{ $review['user']['name'] }}
+    <section id="reviews">
+        @foreach ($reviews as $review)
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-lg flex flex-wrap p-2 mb-4">
+                <div class="sm:w-1/5 w-full font-semibold">
+                    {{ $review->user->name }}
+                </div>
+                <div class="sm:w-4/5 w-full sm:border-l-2 sm:border-solid sm:border-gray-200 sm:pl-2">
+                    {!! nl2br($review->review) !!}
+                </div>
             </div>
-            <div class="sm:w-4/5 w-full sm:border-l-2 sm:border-solid sm:border-gray-200 sm:pl-2">
-                {!! nl2br($review['review']) !!}
+        @endforeach
+        
+        @if($reviews->hasMorePages())
+            <div class="text-center mb-6">
+                <a href="#reviews" wire:click="load" class="bg-transparent hover:bg-blue-400 text-blue-400 font-semibold hover:text-white py-1 px-4 border border-blue-400 hover:border-transparent rounded">Load more...</a>
             </div>
-        </div>
-    @endforeach
-    
-    <div class="text-center mb-5">
-        <a href="#" wire:click="load" class="bg-transparent hover:bg-blue-400 text-blue-400 font-semibold hover:text-white py-1 px-4 border border-blue-400 hover:border-transparent rounded">Load more...</a>
-    </div>
+        @endif
+    </section>
 </div>

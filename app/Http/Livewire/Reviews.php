@@ -7,26 +7,32 @@ use Livewire\Component;
 
 class Reviews extends Component
 {
-    public $reviews = [];
     public $review;
     public $rating;
     public $bookId;
-    public $amount = 3;
+    public $page;
+    public $perPage = 3;
 
     protected $rules = [
         'review' => 'required'
     ];
 
+    public function mount($page = 1, $perPage = 3)
+    {
+        $this->page = $page ? $page : 1;
+        $this->perPage = $perPage ? $perPage : 1;
+    }
+
     public function render()
     {
-        $this->reviews = Review::with('user')->latest()->where('book_id', $this->bookId)->take($this->amount)->get()->toArray();
+        $reviews = Review::with('user')->latest()->where('book_id', $this->bookId)->paginate($this->perPage, ['*'], null, $this->page);
 
-        return view('livewire.reviews', ['reviews' => $this->reviews]);
+        return view('livewire.reviews', compact('reviews'));
     }
 
     public function load()
     {
-        $this->amount += 3;
+        $this->perPage += $this->perPage;
     }
 
     public function submitReview()
@@ -39,10 +45,7 @@ class Reviews extends Component
             'rating' => $this->rating
         ]);
 
-        array_unshift($this->reviews, [
-            'user' => ['name' => auth()->user()->name],
-            'review' => $this->review
-        ]);
+        $this->render();
 
         $this->emit('updateReviewsCount');
         $this->emit('updateRatingCount');
