@@ -10,17 +10,12 @@ class ReviewsCount extends Component
     public $count = 0;
     public $bookId;
 
-    protected $listeners = ['updateReviewsCount' => '$refresh'];
-
-    public function updateReviewsCount()
-    {
-        $this->count++;
-    }
+    protected $listeners = ['updateReviewsCount' => 'render'];
 
     public function render()
     {
-        $this->count = Review::with('user')->latest()->where('book_id', $this->bookId)->count();
+        $this->count = Review::where('book_id', $this->bookId)->count();
 
-        return view('livewire.reviews-count', ['count' => $this->count]);
+        return view('livewire.reviews-count');
     }
 }

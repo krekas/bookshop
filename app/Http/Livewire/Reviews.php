@@ -10,29 +10,25 @@ class Reviews extends Component
     public $review;
     public $rating;
     public $bookId;
-    public $page;
+    public $page = 1;
     public $perPage = 3;
 
     protected $rules = [
         'review' => 'required'
     ];
 
-    public function mount($page = 1, $perPage = 3)
-    {
-        $this->page = $page ? $page : 1;
-        $this->perPage = $perPage ? $perPage : 1;
-    }
-
     public function render()
     {
-        $reviews = Review::with('user')->latest()->where('book_id', $this->bookId)->paginate($this->perPage, ['*'], null, $this->page);
+        $query = Review::with('user')->latest()->where('book_id', $this->bookId);
+        $reviews = $query->take($this->perPage)->get();
+        $reviewsCount = $query->count();
 
-        return view('livewire.reviews', compact('reviews'));
+        return view('livewire.reviews', compact('reviews', 'reviewsCount'));
     }
 
     public function load()
     {
-        $this->perPage += $this->perPage;
+        $this->perPage += 3;
     }
 
     public function submitReview()
@@ -44,8 +40,6 @@ class Reviews extends Component
             'review' => $this->review,
             'rating' => $this->rating
         ]);
-
-        $this->render();
 
         $this->emit('updateReviewsCount');
         $this->emit('updateRatingCount');

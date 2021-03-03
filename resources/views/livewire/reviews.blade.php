@@ -63,7 +63,7 @@
             </div>
         @endforeach
         
-        @if($reviews->hasMorePages())
+        @if($reviews->count() < $reviewsCount)
             <div class="text-center mb-6">
                 <a href="#reviews" wire:click="load" class="bg-transparent hover:bg-blue-400 text-blue-400 font-semibold hover:text-white py-1 px-4 border border-blue-400 hover:border-transparent rounded">Load more...</a>
             </div>
