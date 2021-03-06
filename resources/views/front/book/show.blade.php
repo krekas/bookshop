@@ -80,7 +80,7 @@
 
                     <p class="leading-relaxed mb-4">{{ e($book->description) }}</p>
 
-                    <div class="flex">
+                    <div class="flex justify-between">
                         <div class="flex flex-row items-center">
                             <div class="@if ($book->discount) text-md line-through @else text-2xl @endif mr-1">
                                 @money($book->price)
@@ -88,6 +88,15 @@
                             @if ($book->discount)
                                 <div class="text-red-600 font-medium text-2xl">@money($book->discount_price)</div>
                             @endif
+                        </div>
+                        <div>
+                            <form action="#" method="POST">
+                                @csrf
+
+                                <x-button>
+                                    Buy
+                                </x-button>
+                            </form>
                         </div>
                     </div>
                 </div>

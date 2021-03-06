@@ -58,7 +58,6 @@
                             </button>
                         </x-slot>
 
-
                         <x-slot name="content">
                             <x-dropdown-link :href="route('user.settings')">Settings</x-dropdown-link>
                             <!-- Authentication -->

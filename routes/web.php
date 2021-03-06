@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminAuthorController;
-use App\Http\Controllers\Admin\AdminBookController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdminGenreController;
-use App\Http\Controllers\Admin\AdminUsersController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BookReportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserChangePassword;
+use App\Http\Controllers\BookReportController;
 use App\Http\Controllers\UserSettingsController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminBookController;
+use App\Http\Controllers\Admin\AdminGenreController;
+use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Admin\AdminAuthorController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
