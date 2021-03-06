@@ -65,7 +65,7 @@ class Book extends Model implements HasMedia
 
     public function getDiscountPriceAttribute()
     {
-        return number_format($this->price - ($this->price * ($this->discount / 100)), 2);
+        return round($this->price - ($this->price * $this->discount / 100));
     }
 
     // Is Povilo review video

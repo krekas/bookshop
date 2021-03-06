@@ -30,10 +30,10 @@
 
                                     <div class="flex flex-row items-center">
                                         <div class="@if ($book->discount) text-xs line-through @endif mr-1">
-                                            {{ $book->price }}&euro;
+                                            @money($book->price)
                                         </div>
                                         @if ($book->discount)
-                                            <div class="text-red-600 text-lg">{{ $book->discount_price }}&euro;</div>
+                                            <div class="text-red-600 text-lg">@money($book->discount_price)</div>
                                         @endif
                                     </div>
                                 </div>

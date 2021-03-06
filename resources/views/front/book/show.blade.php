@@ -19,6 +19,17 @@
             <x-alert/>
 
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
+                @if ($book->is_new)
+                    <div class="text-xs px-3 bg-green-200 text-green-800 rounded-full uppercase absolute -ml-4 mt-2 p-1">
+                        New
+                    </div>
+                @endif
+
+                @if ($book->discount)
+                    <div class="text-xs px-3 bg-red-200 text-red-700 font-semibold rounded-full absolute -ml-4 mt-10 p-1">
+                        -{{ $book->discount }}%
+                    </div>
+                @endif
                 <img alt="{{ $book->name }}" class="lg:w-1/3 w-full h-96 object-cover object-center rounded"
                      src="{{ asset($book->cover->getUrl('cover')) }}">
                 <div class="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -72,11 +83,11 @@
                     <div class="flex">
                         <div class="flex flex-row items-center">
                             <div class="@if ($book->discount) text-md line-through @else text-2xl @endif mr-1">
-                                {{ $book->price }}&euro;
+                                @money($book->price)
                             </div>
                             @if ($book->discount)
-                                <div class="text-red-600 font-medium text-2xl">{{ $book->discount_price }}&euro;
-                                </div>@endif
+                                <div class="text-red-600 font-medium text-2xl">@money($book->discount_price)</div>
+                            @endif
                         </div>
                     </div>
                 </div>

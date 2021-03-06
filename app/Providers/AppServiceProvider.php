@@ -31,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('endadmin', function ($expression) {
             return "<?php endif ?>";
         });
+
+        Blade::directive('money', function ($expression) {
+            return "<?php echo Laravel\Cashier\Cashier::formatAmount($expression, config('cashier.currency')); ?>";
+        });
     }
 }

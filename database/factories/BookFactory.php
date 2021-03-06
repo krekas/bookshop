@@ -26,7 +26,7 @@ class BookFactory extends Factory
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->paragraph(),
-            'price' => rand(1, 100),
+            'price' => rand(1000, 9999),
             'discount' => rand(0, 20),
             'user_id' => User::inRandomOrder()->first(),
             'approved' => rand(true, false),
