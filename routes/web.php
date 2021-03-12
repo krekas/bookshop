@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BuyController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CheckoutGuestController;
 use App\Http\Controllers\UserChangePassword;
 use App\Http\Controllers\BookReportController;
 use App\Http\Controllers\UserSettingsController;
@@ -36,11 +40,20 @@ Route::name('books.')->group(function () {
     Route::get('book/{book:slug}', [BookController::class, 'show'])->name('show');
 });
 
+Route::post('checkout/guest/{book:slug}', [CheckoutGuestController::class, 'show'])->middleware('guest')->name('checkout.guest');
+Route::post('checkout/guest/{book:slug}/pay', [CheckoutGuestController::class, 'store'])->middleware('guest')->name('checkout.guest.store');
+Route::view('checkout/authenticate', 'checkout.auth')->middleware('guest')->name('checkout.auth');
+Route::get('checkout/{book:slug}', [CheckoutController::class, 'store'])->middleware('checkout')->name('checkout');
+Route::view('success', 'checkout.success')->middleware('guest')->name('success');
+Route::stripeWebhooks('stripe/webhook');
+
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('books', [BookController::class, 'index'])->name('books.list');
     Route::get('books/{book:slug}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::put('books/{book:slug}', [BookController::class, 'update'])->name('books.update');
     Route::delete('books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
     Route::view('settings', 'front.user.settings')->name('settings');
     Route::post('settings/{user}', [UserSettingsController::class, 'update'])->name('settings.update');

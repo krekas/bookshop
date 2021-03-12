@@ -11,9 +11,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @livewireStyles
+    @yield('styles')
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body class="font-sans antialiased bg-gray-100">
@@ -69,6 +70,7 @@
 </footer>
 
 @livewireScripts
+@yield('scripts')
 
 </body>
 

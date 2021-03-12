@@ -68,6 +68,15 @@ class Book extends Model implements HasMedia
         return round($this->price - ($this->price * $this->discount / 100));
     }
 
+    public function getFinalPriceAttribute()
+    {
+        if ($this->discount) {
+            return (int) $this->discount_price;
+        }
+
+        return (int) $this->price;
+    }
+
     // Is Povilo review video
     public function getIsNewAttribute()
     {
