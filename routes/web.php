@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BuyController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CheckoutGuestController;
 use App\Http\Controllers\UserChangePassword;
 use App\Http\Controllers\BookReportController;
 use App\Http\Controllers\UserSettingsController;
+use App\Http\Controllers\CheckoutGuestController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminGenreController;
 use App\Http\Controllers\Admin\AdminUsersController;
@@ -69,5 +69,8 @@ Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin', 'as' => 'admin.'],
     Route::resource('authors', AdminAuthorController::class);
     Route::resource('users', AdminUsersController::class);
 });
+
+Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('auth.socialite');
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 require __DIR__ . '/auth.php';

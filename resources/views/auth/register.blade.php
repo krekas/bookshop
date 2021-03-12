@@ -6,6 +6,16 @@
             </a>
         </x-slot>
 
+        <x-social-logins/>
+
+        <div class="flex items-center justify-between my-4">
+            <span class="w-1/5 border-b lg:w-1/4"></span>
+
+            <span class="text-xs text-center text-gray-500 uppercase">or register with email</span>
+
+            <span class="w-1/5 border-b lg:w-1/4"></span>
+        </div>
+
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
