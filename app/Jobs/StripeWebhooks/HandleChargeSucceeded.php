@@ -2,12 +2,15 @@
 
 namespace App\Jobs\StripeWebhooks;
 
-use App\Models\Order;use App\Models\User;use Illuminate\Bus\Queueable;
+use App\Models\User;
+use App\Models\Order;
+use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Spatie\WebhookClient\Models\WebhookCall;
+use App\Notifications\SendOrderNotification;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 
 class HandleChargeSucceeded implements ShouldQueue
@@ -40,6 +43,8 @@ class HandleChargeSucceeded implements ShouldQueue
         if ($user) {
             $order = Order::where('user_id', $user->id)->whereNull('paid_at')->latest()->first();
             $order->update(['paid_at' => now()]);
+
+            $user->notify(new SendOrderNotification($user, $order));
         }
     }
 }

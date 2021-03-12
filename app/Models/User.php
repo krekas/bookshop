@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Order;
 use Laravel\Cashier\Billable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

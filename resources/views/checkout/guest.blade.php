@@ -32,7 +32,7 @@
                                 Pay
                             </x-button>
 
-                            <div class="alert alert-danger mt-4 d-none" id="card-error"></div>
+                            <div class="text-red-500" id="card-error"></div>
                         </form>
 
                         <div class="text-sm text-gray-400 mt-4">All transaction are made using stripe.</div>
