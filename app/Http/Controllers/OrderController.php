@@ -8,8 +8,8 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = auth()->user()->orders();
+        $orders = auth()->user()->orders()->with('book')->latest()->paginate();
 
-        return view('orders.index', compact('orders'));
+        return view('front.user.orders.index', compact('orders'));
     }
 }
