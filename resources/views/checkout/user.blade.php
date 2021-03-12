@@ -3,16 +3,11 @@
         <div class="container max-w-7xl px-5 mx-auto mt-6">
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                @if (session('message'))
-                    <div class="alert alert-success" role="alert">{{ session('message') }}</div>
-                @endif
-                @if (session('error'))
-                    <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
-                @endif
+                <x-alert/>
 
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <div class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                    <div class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg">
                         <div class="px-4 py-2">
                             <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-wide">{{ $book->name }}</h1>
                         </div>

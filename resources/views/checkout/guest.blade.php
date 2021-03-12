@@ -4,7 +4,8 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                    <div class="flex justify-center">
+                        <div class="overflow-hidden bg-white rounded-lg shadow-lg">
                             <div class="px-4 py-2">
                                 <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-wide">{{ $book->name }}</h1>
                             </div>
@@ -15,6 +16,7 @@
                                 <h1 class="text-lg font-bold text-white">@money($book->final_price)</h1>
                             </div>
                         </div>
+                    </div>
 
                         <div>
                         <div class="mb-2"><span class="font-semibold">Name:</span> {{ $user->name }}</div>
