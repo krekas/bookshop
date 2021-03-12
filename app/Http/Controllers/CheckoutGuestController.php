@@ -7,10 +7,11 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\CheckoutGuestFormRequest;
 
 class CheckoutGuestController extends Controller
 {
-    public function show(Request $request, Book $book)
+    public function show(CheckoutGuestFormRequest $request, Book $book)
     {
         $user = User::firstOrCreate([
             'email' => $request->input('email'),
