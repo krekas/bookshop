@@ -1,19 +1,41 @@
 <x-app-layout>
     <section class="text-gray-600 body-font">
         <div class="container max-w-7xl px-5 mx-auto mt-6">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                <form action="{{ route('checkout.guest.store', $book) }}" method="POST" id="payment-form">
-                    @csrf
-                    <input type="hidden" name="payment_method" id="payment-method" value="" />
-                    <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}" />
-                    <div id="card-element"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                            <div class="px-4 py-2">
+                                <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-wide">{{ $book->name }}</h1>
+                            </div>
 
-                    <x-button type="button" class="mt-4" id="payment-button">
-                        Pay
-                    </x-button>
+                            <img class="object-cover object-center w-full h-56 mt-2" src="{{ asset($book->cover->getUrl('cover')) }}" alt="{{ $book->name }}">
 
-                    <div class="alert alert-danger mt-4 d-none" id="card-error"></div>
+                            <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
+                                <h1 class="text-lg font-bold text-white">@money($book->final_price)</h1>
+                            </div>
+                        </div>
+
+                        <div>
+                        <div class="mb-2"><span class="font-semibold">Name:</span> {{ $user->name }}</div>
+                        <div class="mb-4"><span class="font-semibold">Email:</span> {{ $user->email }}</div>
+
+                        <form action="{{ route('checkout.guest.store', $book) }}" method="POST" id="payment-form">
+                            @csrf
+                            <input type="hidden" name="payment_method" id="payment-method" value="" />
+                            <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}" />
+                            <div id="card-element"></div>
+
+                            <x-button type="button" class="mt-4" id="payment-button">
+                                Pay
+                            </x-button>
+
+                            <div class="alert alert-danger mt-4 d-none" id="card-error"></div>
+                        </form>
+
+                        <div class="text-sm text-gray-400 mt-4">All transaction are made using stripe.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

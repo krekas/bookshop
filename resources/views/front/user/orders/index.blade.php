@@ -21,7 +21,7 @@
                                     <td class="px-3 py-4 text-gray-500">{{ $order->created_at->format('Y-m-d') }}</td>
                                     <td class="px-3 py-4">
                                         <div class="flex items-center w-max">
-                                            <img width="50" height="50" class="w-10 h-10 rounded-full" src="{{ asset($order->book->cover->getUrl('cover')) }}" alt="Book cover" />
+                                            <img width="50" height="50" class="w-10 h-10 rounded-full" src="{{ asset($order->book->cover->getUrl('cover')) }}" alt="{{ $order->book->name }}" />
                                             <div class="ml-4">
                                                 <div class="text-gray-400">{{ $order->book->name }}</div>
                                             </div>
