@@ -33,7 +33,7 @@ class CheckoutGuestController extends Controller
 
     public function store(Request $request)
     {
-        $order = Order::with('user')->where('id', $request->input('order_id'))->latest()->first();
+        $order = Order::with('user')->find($request->input('order_id'));
         $paymentMethod = $request->input('payment_method');
 
         try {
