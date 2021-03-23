@@ -43,7 +43,9 @@
                 @endforeach
             </div>
 
-            {{ $books->links() }}
+            <div class="mb-4">
+                {{ $books->links() }}
+            </div>
 
         </div>
     </section>
