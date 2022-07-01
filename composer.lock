@@ -5779,16 +5779,16 @@
         },
         {
             "name": "spatie/laravel-package-tools",
-            "version": "1.11.3",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59"
+                "reference": "09f80fa240d44fafb1c70657c74ee44ffa929357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
-                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/09f80fa240d44fafb1c70657c74ee44ffa929357",
+                "reference": "09f80fa240d44fafb1c70657c74ee44ffa929357",
                 "shasum": ""
             },
             "require": {
@@ -5826,7 +5826,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.11.3"
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.12.1"
             },
             "funding": [
                 {
@@ -5834,7 +5834,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-15T20:01:36+00:00"
+            "time": "2022-06-28T14:29:26+00:00"
         },
         {
             "name": "spatie/laravel-sluggable",
@@ -5899,16 +5899,16 @@
         },
         {
             "name": "spatie/laravel-stripe-webhooks",
-            "version": "3.1.3",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-stripe-webhooks.git",
-                "reference": "a496eacbf74733a848c8ee6043aa07c73595010e"
+                "reference": "98877039af009929cfe0241b9aa6dc5bfdc713cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-stripe-webhooks/zipball/a496eacbf74733a848c8ee6043aa07c73595010e",
-                "reference": "a496eacbf74733a848c8ee6043aa07c73595010e",
+                "url": "https://api.github.com/repos/spatie/laravel-stripe-webhooks/zipball/98877039af009929cfe0241b9aa6dc5bfdc713cf",
+                "reference": "98877039af009929cfe0241b9aa6dc5bfdc713cf",
                 "shasum": ""
             },
             "require": {
@@ -5954,7 +5954,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-stripe-webhooks/issues",
-                "source": "https://github.com/spatie/laravel-stripe-webhooks/tree/3.1.3"
+                "source": "https://github.com/spatie/laravel-stripe-webhooks/tree/3.2.0"
             },
             "funding": [
                 {
@@ -5962,7 +5962,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-05-18T15:50:17+00:00"
+            "time": "2022-06-07T08:29:42+00:00"
         },
         {
             "name": "spatie/laravel-webhook-client",
