@@ -5987,23 +5987,23 @@
         },
         {
             "name": "spatie/laravel-stripe-webhooks",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-stripe-webhooks.git",
-                "reference": "98877039af009929cfe0241b9aa6dc5bfdc713cf"
+                "reference": "bf40e4e6bd8f8aaab1faf8ca0d7e3f57b3c3e7a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-stripe-webhooks/zipball/98877039af009929cfe0241b9aa6dc5bfdc713cf",
-                "reference": "98877039af009929cfe0241b9aa6dc5bfdc713cf",
+                "url": "https://api.github.com/repos/spatie/laravel-stripe-webhooks/zipball/bf40e4e6bd8f8aaab1faf8ca0d7e3f57b3c3e7a8",
+                "reference": "bf40e4e6bd8f8aaab1faf8ca0d7e3f57b3c3e7a8",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^8.0|^9.0",
                 "php": "^8.0",
                 "spatie/laravel-webhook-client": "^3.0",
-                "stripe/stripe-php": "^7.51|^8.0"
+                "stripe/stripe-php": "^7.51|^8.0|^9.0"
             },
             "require-dev": {
                 "orchestra/testbench": "^6.0|^7.0",
@@ -6042,7 +6042,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-stripe-webhooks/issues",
-                "source": "https://github.com/spatie/laravel-stripe-webhooks/tree/3.2.0"
+                "source": "https://github.com/spatie/laravel-stripe-webhooks/tree/3.2.1"
             },
             "funding": [
                 {
@@ -6050,20 +6050,20 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-06-07T08:29:42+00:00"
+            "time": "2022-08-03T11:18:43+00:00"
         },
         {
             "name": "spatie/laravel-webhook-client",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-webhook-client.git",
-                "reference": "59ff7228c9a71ab25b5dd20f249dc722f6bf8bce"
+                "reference": "2f5de4d5afbde59b0289694e4f63899b3bf02bde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-webhook-client/zipball/59ff7228c9a71ab25b5dd20f249dc722f6bf8bce",
-                "reference": "59ff7228c9a71ab25b5dd20f249dc722f6bf8bce",
+                "url": "https://api.github.com/repos/spatie/laravel-webhook-client/zipball/2f5de4d5afbde59b0289694e4f63899b3bf02bde",
+                "reference": "2f5de4d5afbde59b0289694e4f63899b3bf02bde",
                 "shasum": ""
             },
             "require": {
@@ -6111,7 +6111,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-webhook-client/issues",
-                "source": "https://github.com/spatie/laravel-webhook-client/tree/3.1.2"
+                "source": "https://github.com/spatie/laravel-webhook-client/tree/3.1.3"
             },
             "funding": [
                 {
@@ -6119,7 +6119,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-04-07T22:44:43+00:00"
+            "time": "2022-08-07T18:08:10+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -10679,16 +10679,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "c10a5f6e06fc2470ab1822fa13fa2a7380f8fbac"
+                "reference": "e92dcc83d5a51851baf5f5591d32cb2b16e3684e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/c10a5f6e06fc2470ab1822fa13fa2a7380f8fbac",
-                "reference": "c10a5f6e06fc2470ab1822fa13fa2a7380f8fbac",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/e92dcc83d5a51851baf5f5591d32cb2b16e3684e",
+                "reference": "e92dcc83d5a51851baf5f5591d32cb2b16e3684e",
                 "shasum": ""
             },
             "require": {
@@ -10745,9 +10745,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mockery/mockery/issues",
-                "source": "https://github.com/mockery/mockery/tree/1.5.0"
+                "source": "https://github.com/mockery/mockery/tree/1.5.1"
             },
-            "time": "2022-01-20T13:18:17+00:00"
+            "time": "2022-09-07T15:32:08+00:00"
         },
         {
             "name": "nunomaduro/collision",
